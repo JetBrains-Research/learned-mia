@@ -1,0 +1,89 @@
+seed: 42
+manifest_path: data/manifest.yaml
+save_path: outputs/mia_combined.pt
+train_combinations:
+  - distilgpt2_news_category_dataset
+  - distilgpt2_wikipedia
+  - distilgpt2_cnndm
+  - gpt2-xl_news_category_dataset
+  - gpt2-xl_wikipedia
+  - gpt2-xl_cnndm
+  - eleutherai_pythia-1.4b_news_category_dataset
+  - eleutherai_pythia-1.4b_wikipedia
+  - eleutherai_pythia-1.4b_cnndm
+  - cerebras_cerebras-gpt-2.7b_news_category_dataset
+  - cerebras_cerebras-gpt-2.7b_wikipedia
+  - cerebras_cerebras-gpt-2.7b_cnndm
+  - eleutherai_gpt-j-6b_news_category_dataset
+  - eleutherai_gpt-j-6b_wikipedia
+  - eleutherai_gpt-j-6b_cnndm
+  - google_gemma-2b_news_category_dataset
+  - google_gemma-2b_wikipedia
+  - google_gemma-2b_cnndm
+  - qwen_qwen2-1.5b_news_category_dataset
+  - qwen_qwen2-1.5b_wikipedia
+  - qwen_qwen2-1.5b_cnndm
+  - mosaicml_mpt-7b_news_category_dataset
+  - mosaicml_mpt-7b_wikipedia
+  - mosaicml_mpt-7b_cnndm
+  - tiiuae_falcon-rw-1b_news_category_dataset
+  - tiiuae_falcon-rw-1b_wikipedia
+  - tiiuae_falcon-rw-1b_cnndm
+  - tiiuae_falcon-7b_news_category_dataset
+  - tiiuae_falcon-7b_wikipedia
+  - tiiuae_falcon-7b_cnndm
+  - distilgpt2_arxiv
+  - gpt2-xl_arxiv
+  - eleutherai_pythia-1.4b_arxiv
+  - cerebras_cerebras-gpt-2.7b_arxiv
+  - eleutherai_gpt-j-6b_arxiv
+  - google_gemma-2b_arxiv
+  - qwen_qwen2-1.5b_arxiv
+  - gl198976_mpt-7b_arxiv
+  - tiiuae_falcon-rw-1b_arxiv
+  - tiiuae_falcon-7b_arxiv
+  - bigscience_bloom-3b_news_category_dataset
+  - bigscience_bloom-3b_wikipedia
+  - bigscience_bloom-3b_cnndm
+  - bigscience_bloom-3b_arxiv
+  - openlm-research_open_llama_3b_v2_news_category_dataset
+  - openlm-research_open_llama_3b_v2_wikipedia
+  - openlm-research_open_llama_3b_v2_cnndm
+  - openlm-research_open_llama_3b_v2_arxiv
+  - allenai_olmo-1b-hf_news_category_dataset
+  - allenai_olmo-1b-hf_wikipedia
+  - allenai_olmo-1b-hf_cnndm
+  - allenai_olmo-1b-hf_arxiv
+  - stabilityai_stablelm-2-1_6b_news_category_dataset
+  - stabilityai_stablelm-2-1_6b_wikipedia
+  - stabilityai_stablelm-2-1_6b_cnndm
+  - stabilityai_stablelm-2-1_6b_arxiv
+  - togethercomputer_redpajama-incite-base-3b-v1_news_category_dataset
+  - togethercomputer_redpajama-incite-base-3b-v1_wikipedia
+  - togethercomputer_redpajama-incite-base-3b-v1_cnndm
+  - togethercomputer_redpajama-incite-base-3b-v1_arxiv
+holdout_combinations: []
+
+model:
+  architecture: transformer
+  d_model: 192
+  nhead: 8
+  num_layers: 2
+  dim_ff: 576
+  dropout: 0.05
+  hidden_dims: [256, 128]
+
+train:
+  epochs: 80
+  batch_size: 16384
+  lr: 9.88e-4
+  balance_strategy: uniform
+  label_smooth: 0.02
+  use_focal: false
+  focal_gamma: 2.0
+  focal_alpha: 0.25
+  lr_scheduler: cosine
+  warmup_epochs: 10
+  min_lr: 1e-6
+  weight_decay: 0.028
+  grad_clip: 1.0

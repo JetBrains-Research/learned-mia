@@ -1,0 +1,737 @@
+output_root: data/features
+manifest_path: data/manifest.yaml
+
+defaults:
+  seed: 42
+  n_members: 10000
+  n_nonmembers: 10000
+  n_ft_val: 500
+  holdout_per_class: 500
+  sequence_length: 128
+  top_k: 20
+  ft_epochs: 3
+  ft_batch_size: 16
+  ft_lr: 5e-5
+  inference_batch_size: 16
+  val_ratio: 0.05
+  test_ratio: 0.05
+
+combinations:
+  - model: distilgpt2
+    dataset: news-category-dataset
+    lora:
+      use_lora: false
+  - model: distilgpt2
+    dataset: wikipedia
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+  - model: distilgpt2
+    dataset: cnndm
+    lora:
+      use_lora: false
+  - model: distilgpt2
+    dataset: arxiv
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+
+  - model: gpt2-xl
+    dataset: news-category-dataset
+    lora:
+      use_lora: false
+  - model: gpt2-xl
+    dataset: wikipedia
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+  - model: gpt2-xl
+    dataset: cnndm
+    lora:
+      use_lora: false
+  - model: gpt2-xl
+    dataset: arxiv
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+
+  - model: EleutherAI/pythia-1.4b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: EleutherAI/pythia-1.4b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+  - model: EleutherAI/pythia-1.4b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: EleutherAI/pythia-1.4b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+
+  - model: cerebras/Cerebras-GPT-2.7B
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - c_attn
+        - c_proj
+        - c_fc
+  - model: cerebras/Cerebras-GPT-2.7B
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - c_attn
+        - c_proj
+        - c_fc
+    data:
+      streaming: true
+  - model: cerebras/Cerebras-GPT-2.7B
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - c_attn
+        - c_proj
+        - c_fc
+  - model: cerebras/Cerebras-GPT-2.7B
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - c_attn
+        - c_proj
+        - c_fc
+    data:
+      streaming: true
+
+  - model: EleutherAI/gpt-j-6B
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - out_proj
+        - fc_in
+        - fc_out
+  - model: EleutherAI/gpt-j-6B
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - out_proj
+        - fc_in
+        - fc_out
+    data:
+      streaming: true
+  - model: EleutherAI/gpt-j-6B
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - out_proj
+        - fc_in
+        - fc_out
+  - model: EleutherAI/gpt-j-6B
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - out_proj
+        - fc_in
+        - fc_out
+    data:
+      streaming: true
+
+  - model: google/gemma-2b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: google/gemma-2b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+  - model: google/gemma-2b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: google/gemma-2b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+
+  - model: Qwen/Qwen2-1.5B
+    dataset: news-category-dataset
+    lora:
+      use_lora: false
+  - model: Qwen/Qwen2-1.5B
+    dataset: wikipedia
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+  - model: Qwen/Qwen2-1.5B
+    dataset: cnndm
+    lora:
+      use_lora: false
+  - model: Qwen/Qwen2-1.5B
+    dataset: arxiv
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+
+  - model: mosaicml/mpt-7b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - Wqkv
+        - out_proj
+        - up_proj
+        - down_proj
+  - model: mosaicml/mpt-7b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - Wqkv
+        - out_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+  - model: mosaicml/mpt-7b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - Wqkv
+        - out_proj
+        - up_proj
+        - down_proj
+  - model: gl198976/mpt-7b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - Wqkv
+        - out_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+
+  - model: tiiuae/falcon-rw-1b
+    dataset: news-category-dataset
+    lora:
+      use_lora: false
+  - model: tiiuae/falcon-rw-1b
+    dataset: wikipedia
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+  - model: tiiuae/falcon-rw-1b
+    dataset: cnndm
+    lora:
+      use_lora: false
+  - model: tiiuae/falcon-rw-1b
+    dataset: arxiv
+    lora:
+      use_lora: false
+    data:
+      streaming: true
+
+  - model: tiiuae/falcon-7b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: tiiuae/falcon-7b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+  - model: tiiuae/falcon-7b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: tiiuae/falcon-7b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+
+  - model: bigscience/bloom-3b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: bigscience/bloom-3b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+  - model: bigscience/bloom-3b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: bigscience/bloom-3b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+
+  - model: openlm-research/open_llama_3b_v2
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: openlm-research/open_llama_3b_v2
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+  - model: openlm-research/open_llama_3b_v2
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: openlm-research/open_llama_3b_v2
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+
+  - model: allenai/OLMo-1B-hf
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 8
+      alpha: 16
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: allenai/OLMo-1B-hf
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 8
+      alpha: 16
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+  - model: allenai/OLMo-1B-hf
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 8
+      alpha: 16
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: allenai/OLMo-1B-hf
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 8
+      alpha: 16
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+
+  - model: stabilityai/stablelm-2-1_6b
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 12
+      alpha: 24
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: stabilityai/stablelm-2-1_6b
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 12
+      alpha: 24
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+  - model: stabilityai/stablelm-2-1_6b
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 12
+      alpha: 24
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+  - model: stabilityai/stablelm-2-1_6b
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 12
+      alpha: 24
+      dropout: 0.05
+      target_modules:
+        - q_proj
+        - k_proj
+        - v_proj
+        - o_proj
+        - gate_proj
+        - up_proj
+        - down_proj
+    data:
+      streaming: true
+
+  - model: togethercomputer/RedPajama-INCITE-Base-3B-v1
+    dataset: news-category-dataset
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: togethercomputer/RedPajama-INCITE-Base-3B-v1
+    dataset: wikipedia
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true
+  - model: togethercomputer/RedPajama-INCITE-Base-3B-v1
+    dataset: cnndm
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+  - model: togethercomputer/RedPajama-INCITE-Base-3B-v1
+    dataset: arxiv
+    lora:
+      use_lora: true
+      r: 16
+      alpha: 32
+      dropout: 0.05
+      target_modules:
+        - query_key_value
+        - dense
+        - dense_h_to_4h
+        - dense_4h_to_h
+    data:
+      streaming: true

@@ -1,0 +1,304 @@
+output_root: data/features
+manifest_path: data/manifest.yaml
+defaults:
+  seed: 42
+  n_members: 10000
+  n_nonmembers: 10000
+  n_ft_val: 500
+  holdout_per_class: 500
+  sequence_length: 128
+  top_k: 20
+  ft_epochs: 3
+  ft_batch_size: 16
+  ft_lr: 5e-5
+  inference_batch_size: 16
+  val_ratio: 0.05
+  test_ratio: 0.05
+  save_token_ids: true
+combinations:
+- model: gpt2
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: gpt2
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: gpt2
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: gpt2
+  dataset: swallow_code
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-2.8b
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-2.8b
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: EleutherAI/pythia-2.8b
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-2.8b
+  dataset: swallow_code
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-6.9b
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-6.9b
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: EleutherAI/pythia-6.9b
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: EleutherAI/pythia-6.9b
+  dataset: swallow_code
+  lora:
+    use_lora: false
+- model: meta-llama/Llama-2-7b-hf
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: meta-llama/Llama-2-7b-hf
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: meta-llama/Llama-2-7b-hf
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: meta-llama/Llama-2-7b-hf
+  dataset: swallow_code
+  lora:
+    use_lora: false
+- model: mistralai/Mistral-7B-v0.1
+  dataset: ag_news
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+- model: mistralai/Mistral-7B-v0.1
+  dataset: wikitext103
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  data:
+    streaming: true
+- model: mistralai/Mistral-7B-v0.1
+  dataset: xsum
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+- model: mistralai/Mistral-7B-v0.1
+  dataset: swallow_code
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+- model: microsoft/phi-2
+  dataset: ag_news
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - dense
+    - fc1
+    - fc2
+- model: microsoft/phi-2
+  dataset: wikitext103
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - dense
+    - fc1
+    - fc2
+  data:
+    streaming: true
+- model: microsoft/phi-2
+  dataset: xsum
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - dense
+    - fc1
+    - fc2
+- model: microsoft/phi-2
+  dataset: swallow_code
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - dense
+    - fc1
+    - fc2
+- model: facebook/opt-2.7b
+  dataset: ag_news
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - out_proj
+    - fc1
+    - fc2
+- model: facebook/opt-2.7b
+  dataset: wikitext103
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - out_proj
+    - fc1
+    - fc2
+  data:
+    streaming: true
+- model: facebook/opt-2.7b
+  dataset: xsum
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - out_proj
+    - fc1
+    - fc2
+- model: facebook/opt-2.7b
+  dataset: swallow_code
+  lora:
+    use_lora: true
+    r: 16
+    alpha: 32
+    dropout: 0.05
+    target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - out_proj
+    - fc1
+    - fc2
+- model: state-spaces/mamba-2.8b-hf
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: state-spaces/mamba-2.8b-hf
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: state-spaces/mamba-2.8b-hf
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: state-spaces/mamba-2.8b-hf
+  dataset: swallow_code
+  lora:
+    use_lora: false
+- model: RWKV/rwkv-4-3b-pile
+  dataset: ag_news
+  lora:
+    use_lora: false
+- model: RWKV/rwkv-4-3b-pile
+  dataset: wikitext103
+  lora:
+    use_lora: false
+  data:
+    streaming: true
+- model: RWKV/rwkv-4-3b-pile
+  dataset: xsum
+  lora:
+    use_lora: false
+- model: RWKV/rwkv-4-3b-pile
+  dataset: swallow_code
+  lora:
+    use_lora: false
